@@ -75,7 +75,7 @@ public class ProfileFragment extends Fragment {
         // TODO: Отобразить логин и аватарку
 
         changePasswordButton.setOnClickListener(v -> {
-            startActivity(new Intent(getActivity(), ChangePasswordActivity.class));
+
         });
 
         return view;
