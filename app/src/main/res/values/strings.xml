@@ -1,9 +1,25 @@
 <resources>
-    <string name="app_name">Flight App</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="wikipedia">Wikipedia</string>
-    <string name="flightradar24">Flightradar24</string>
-    <string name="radarbox">Radarbox</string>
-    <string name="flightaware">Flightaware</string>
+    <string name="app_name" translatable="false">Flight App</string>
+    <string name="wikipedia" translatable="false">Wikipedia</string>
+    <string name="flightradar24" translatable="false">Flightradar24</string>
+    <string name="radarbox" translatable="false">Radarbox</string>
+    <string name="flightaware" translatable="false">Flightaware</string>
+    <string name="username">Name</string>
+    <string name="email">Email</string>
+    <string name="search_airports">Search airports...</string>
+    <string name="search">Search</string>
+    <string name="city_country">City, Country</string>
+    <string name="iata_icao" translatable="false">IATA / ICAO</string>
+    <string name="continent">Continent:</string>
+    <string name="region">Region:</string>
+    <string name="state">State:</string>
+    <string name="latitude">Latitude:</string>
+    <string name="longitude">Longitude:</string>
+    <string name="elevation">Elevation:</string>
+    <string name="type">Type:</string>
+    <string name="runway_length">Runway Length:</string>
+    <string name="scheduled_service">Scheduled Service:</string>
+    <string name="website">Website:</string>
+    <string name="iso_region" translatable="false">ISO Region:</string>
+    <string name="woeid" translatable="false">WOEID:</string>
 </resources>

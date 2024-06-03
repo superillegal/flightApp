@@ -37,7 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="City, Country"
+                android:text="@string/city_country"
                 android:textAppearance="?attr/textAppearanceBodyLarge" />
 
             <TextView
@@ -45,7 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="IATA / ICAO"
+                android:text="@string/iata_icao"
                 android:textAppearance="?attr/textAppearanceBodyLarge" />
 
 
@@ -54,7 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Continent: "
+                android:text="@string/continent"
                 android:textAppearance="?attr/textAppearanceBodyLarge" />
 
             <TextView
@@ -62,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Region: "
+                android:text="@string/region"
                 android:textAppearance="?attr/textAppearanceBodyLarge" />
 
             <TextView
@@ -70,7 +70,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="State: "
+                android:text="@string/state"
                 android:textAppearance="?attr/textAppearanceBodyLarge" />
 
             <TextView
@@ -78,7 +78,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Latitude: "
+                android:text="@string/latitude"
                 android:textAppearance="?attr/textAppearanceBodyLarge" />
 
             <TextView
@@ -86,7 +86,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Longitude: "
+                android:text="@string/longitude"
                 android:textAppearance="?attr/textAppearanceBodyLarge" />
 
             <TextView
@@ -94,7 +94,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Elevation: "
+                android:text="@string/elevation"
                 android:textAppearance="?attr/textAppearanceBodyLarge" />
 
             <TextView
@@ -102,7 +102,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Type: "
+                android:text="@string/type"
                 android:textAppearance="?attr/textAppearanceBodyLarge" />
 
             <TextView
@@ -110,7 +110,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Runway Length: "
+                android:text="@string/runway_length"
                 android:textAppearance="?attr/textAppearanceBodyLarge" />
 
             <TextView
@@ -118,7 +118,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Scheduled Service: "
+                android:text="@string/scheduled_service"
                 android:textAppearance="?attr/textAppearanceBodyLarge" />
 
             <TextView
@@ -126,7 +126,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Website: "
+                android:text="@string/website"
                 android:textAppearance="?attr/textAppearanceBodyLarge" />
 
             <TextView
@@ -134,7 +134,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="ISO Region: "
+                android:text="@string/iso_region"
                 android:textAppearance="?attr/textAppearanceBodyLarge" />
 
             <TextView
@@ -142,7 +142,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="WOEID: "
+                android:text="@string/woeid"
                 android:textAppearance="?attr/textAppearanceBodyLarge" />
 
             <LinearLayout

@@ -11,7 +11,17 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+
+import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.imageview.ShapeableImageView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,9 +38,10 @@ public class ProfileFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    TextView loginTextView;
-    ImageView avatarImageView;
-    Button changePasswordButton;
+    private TextView usernameTextView;
+    private TextView emailTextView;
+    private ShapeableImageView logoutIcon;
+    private ShapeableImageView profileImage;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -68,14 +79,55 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        loginTextView = view.findViewById(R.id.loginTextView);
-        avatarImageView = view.findViewById(R.id.avatarImageView);
-        changePasswordButton = view.findViewById(R.id.changePasswordButton);
+        MaterialToolbar profileToolbar = view.findViewById(R.id.profileToolbar);
+        ((AppCompatActivity) requireActivity()).setSupportActionBar(profileToolbar);
 
-        changePasswordButton.setOnClickListener(v -> {
+        usernameTextView = view.findViewById(R.id.usernameTextView);
+        emailTextView = view.findViewById(R.id.emailTextView);
+        logoutIcon = view.findViewById(R.id.logoutIcon);
+        profileImage = view.findViewById(R.id.profileImage);
 
-        });
+        logoutIcon.setOnClickListener(v -> showLogoutConfirmationDialog());
+
+        loadUserData();
 
         return view;
+    }
+
+    private void showLogoutConfirmationDialog() {
+        new MaterialAlertDialogBuilder(requireContext())
+                .setTitle("Выход из аккаунта")
+                .setMessage("Вы уверены, что хотите выйти из аккаунта?")
+                .setPositiveButton("Да", (dialog, which) -> {
+                    FirebaseAuth.getInstance().signOut();
+                    startActivity(new Intent(requireActivity(), LoginActivity.class));
+                    requireActivity().finish();
+                })
+                .setNegativeButton("Нет", null)
+                .show();
+    }
+
+    private void loadUserData() {
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        FirebaseDatabase.getInstance().getReference().child("Users").child(userId)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.exists()) {
+                            String username = snapshot.child("username").getValue(String.class);
+                            String email = snapshot.child("email").getValue(String.class);
+
+                            usernameTextView.setText(username);
+                            emailTextView.setText(email);
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
     }
 }

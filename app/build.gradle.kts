@@ -46,6 +46,7 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.1.0"))
     implementation("com.google.firebase:firebase-database")
     implementation("androidx.recyclerview:recyclerview:1.2.")
+    implementation("com.google.android.material:material:<version>")
     implementation(libs.recyclerview)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)

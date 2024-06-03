@@ -37,13 +37,13 @@
             android:id="@+id/search_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Search airports..." />
+            android:hint="@string/search_airports" />
 
         <com.google.android.material.search.SearchView
             android:id="@+id/search_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Search"
+            android:hint="@string/search"
             app:layout_anchor="@id/search_bar">
         </com.google.android.material.search.SearchView>
 
