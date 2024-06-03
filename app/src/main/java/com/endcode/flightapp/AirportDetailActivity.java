@@ -13,53 +13,32 @@ import com.google.android.material.appbar.MaterialToolbar;
 
 public class AirportDetailActivity extends AppCompatActivity {
 
-    private TextView airportName;
-    private TextView cityCountry;
-    private TextView codes;
-    private TextView latitude;
-    private TextView longitude;
-    private TextView elevation;
-    private TextView region;
-    private TextView state;
-    private TextView type;
-    private TextView continent;
-    private TextView isoRegion;
-    private TextView scheduledService;
-    private TextView home;
-    private TextView woeid;
-    private TextView runwayLength;
-
-    private Button wikipediaButton;
-    private Button flightradar24Button;
-    private Button radarboxButton;
-    private Button flightawareButton;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_airport_detail);
 
 
-        cityCountry = findViewById(R.id.cityCountryTextView);
-        codes = findViewById(R.id.codesTextView);
-        latitude = findViewById(R.id.latitudeTextView);
-        longitude = findViewById(R.id.longitudeTextView);
-        elevation = findViewById(R.id.elevationTextView);
-        region = findViewById(R.id.regionTextView);
-        state = findViewById(R.id.stateTextView);
-        type = findViewById(R.id.typeTextView);
-        continent = findViewById(R.id.continentTextView);
-        isoRegion = findViewById(R.id.isoRegionTextView);
-        scheduledService = findViewById(R.id.scheduledServiceTextView);
-        home = findViewById(R.id.homeTextView);
-        woeid = findViewById(R.id.woeidTextView);
-        runwayLength = findViewById(R.id.runwayLengthTextView);
+        TextView cityCountry = findViewById(R.id.cityCountryTextView);
+        TextView codes = findViewById(R.id.codesTextView);
+        TextView latitude = findViewById(R.id.latitudeTextView);
+        TextView longitude = findViewById(R.id.longitudeTextView);
+        TextView elevation = findViewById(R.id.elevationTextView);
+        TextView region = findViewById(R.id.regionTextView);
+        TextView state = findViewById(R.id.stateTextView);
+        TextView type = findViewById(R.id.typeTextView);
+        TextView continent = findViewById(R.id.continentTextView);
+        TextView isoRegion = findViewById(R.id.isoRegionTextView);
+        TextView scheduledService = findViewById(R.id.scheduledServiceTextView);
+        TextView home = findViewById(R.id.homeTextView);
+        TextView woeid = findViewById(R.id.woeidTextView);
+        TextView runwayLength = findViewById(R.id.runwayLengthTextView);
 
 
-        wikipediaButton = findViewById(R.id.wikipediaButton);
-        flightradar24Button = findViewById(R.id.flightradar24Button);
-        radarboxButton = findViewById(R.id.radarboxButton);
-        flightawareButton = findViewById(R.id.flightawareButton);
+        Button wikipediaButton = findViewById(R.id.wikipediaButton);
+        Button flightradar24Button = findViewById(R.id.flightradar24Button);
+        Button radarboxButton = findViewById(R.id.radarboxButton);
+        Button flightawareButton = findViewById(R.id.flightawareButton);
 
         Airport airport = getIntent().getParcelableExtra("airport");
 
