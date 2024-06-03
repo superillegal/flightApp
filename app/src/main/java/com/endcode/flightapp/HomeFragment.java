@@ -1,72 +1,144 @@
 package com.endcode.flightapp;
-
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebViewClient;
-import android.webkit.WebView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.search.SearchBar;
+import com.google.android.material.search.SearchView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link HomeFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class HomeFragment extends Fragment {
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-    private WebView webView;
+public class HomeFragment extends Fragment implements AirportAdapter.OnItemClickListener {
 
-    public HomeFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HomeFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static HomeFragment newInstance(String param1, String param2) {
-        HomeFragment fragment = new HomeFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    RecyclerView flightsRecyclerView;
+    private RecyclerView airportList;
+    private AirportAdapter airportAdapter;
+    private List<Airport> allAirports;
+    private List<Airport> filteredAirports;
+    private SearchView searchView;
+    private SearchBar searchBar;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
+        airportList = view.findViewById(R.id.airport_list);
+        searchView = view.findViewById(R.id.search_view);
+        searchBar = view.findViewById(R.id.search_bar);
+
+        allAirports = loadAirportsFromJson();
+        filteredAirports = new ArrayList<>(allAirports);
+
+        airportAdapter = new AirportAdapter(filteredAirports, this);
+        airportList.setLayoutManager(new LinearLayoutManager(getContext()));
+        airportList.setAdapter(airportAdapter);
+
+        searchBar.inflateMenu(R.menu.searchbar_menu);
+        searchBar.setOnMenuItemClickListener(menuItem -> {
+            if (menuItem.getItemId() == R.id.action_search) {
+                searchView.show();
+                return true;
+            }
+            return false;
+        });
+
+        searchView.getEditText().setOnEditorActionListener((v, actionId, event) -> {
+            searchBar.setText(searchView.getText());
+            searchView.hide();
+            filterAirports(searchView.getText().toString());
+            return false;
+        });
+
         return view;
+    }
+
+    private List<Airport> loadAirportsFromJson() {
+        List<Airport> airports = new ArrayList<>();
+        try {
+            InputStream is = getContext().getAssets().open("airports.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            String json = new String(buffer, "UTF-8");
+
+            JSONArray jsonArray = new JSONArray(json);
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                Airport airport = new Airport(
+                        jsonObject.getString("iata"),
+                        jsonObject.getString("icao"),
+                        jsonObject.getString("time"),
+                        jsonObject.getString("city_code"),
+                        jsonObject.getString("country_code"),
+                        jsonObject.getString("airport"),
+                        jsonObject.getString("latitude"),
+                        jsonObject.getString("longitude"),
+                        jsonObject.getString("elevation_ft"),
+                        jsonObject.getString("region_name"),
+                        jsonObject.getString("city"),
+                        jsonObject.getString("county"),
+                        jsonObject.getString("state"),
+                        jsonObject.getString("type"),
+                        jsonObject.getString("continent"),
+                        jsonObject.getString("iso_region"),
+                        jsonObject.getString("scheduled_service"),
+                        jsonObject.getString("wikipedia_link"),
+                        jsonObject.getString("home"),
+                        jsonObject.getString("woeid"),
+                        jsonObject.getString("phone"),
+                        jsonObject.getString("email"),
+                        jsonObject.getString("runway_length"),
+                        jsonObject.getString("flightradar24_url"),
+                        jsonObject.getString("radarbox_url"),
+                        jsonObject.getString("flightaware_url")
+                );
+                airports.add(airport);
+
+            }
+        } catch (IOException | JSONException ex) {
+            ex.printStackTrace();
+
+        }
+        return airports;
+
+    }
+
+    private void filterAirports(String query) {
+        List<Airport> results = new ArrayList<>();
+        for (Airport airport : allAirports) {
+            if (airport.getCity().toLowerCase().contains(query.toLowerCase()) ||
+                    airport.getAirport().toLowerCase().contains(query.toLowerCase()) ||
+                    airport.getIata().toLowerCase().contains(query.toLowerCase())) {
+                results.add(airport);
+            }
+        }
+        airportAdapter.updateData(results);
+    }
+
+    @Override
+    public void onItemClick(Airport airport) {
+        Intent intent = new Intent(getContext(), AirportDetailActivity.class);
+        intent.putExtra("airport", airport);
+        startActivity(intent);
     }
 }

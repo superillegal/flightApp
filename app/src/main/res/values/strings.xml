@@ -2,4 +2,8 @@
     <string name="app_name">Flight App</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="wikipedia">Wikipedia</string>
+    <string name="flightradar24">Flightradar24</string>
+    <string name="radarbox">Radarbox</string>
+    <string name="flightaware">Flightaware</string>
 </resources>
