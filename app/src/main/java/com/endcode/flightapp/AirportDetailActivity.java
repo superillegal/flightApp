@@ -37,8 +37,8 @@ public class AirportDetailActivity extends AppCompatActivity {
 
         Button wikipediaButton = findViewById(R.id.wikipediaButton);
         Button flightradar24Button = findViewById(R.id.flightradar24Button);
-        Button radarboxButton = findViewById(R.id.radarboxButton);
-        Button flightawareButton = findViewById(R.id.flightawareButton);
+        Button departureButton = findViewById(R.id.radarboxButton);
+
 
         Airport airport = getIntent().getParcelableExtra("airport");
 
@@ -77,15 +77,22 @@ public class AirportDetailActivity extends AppCompatActivity {
 
             wikipediaButton.setOnClickListener(view -> openLink(airport.getWikipediaLink()));
             flightradar24Button.setOnClickListener(view -> openLink(airport.getFlightradar24Link()));
-            radarboxButton.setOnClickListener(view -> openLink(airport.getRadarboxLink()));
-            flightawareButton.setOnClickListener(view -> openLink(airport.getFlightawareLink()));
-            codes.setText(airport.getIata() + " / " + airport.getIcao());
+
+            departureButton.setOnClickListener(view -> openView(airport.getIata()));
         }
     }
     private void openLink(String url) {
         if (url != null && !url.isEmpty()) {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
             startActivity(intent);
+        }
+    }
+
+    private void openView(String code) {
+        if (code != null && !code.isEmpty()) {
+            Intent intent = new Intent(this, ContentActivity.class);
+            intent.putExtra("code", code);
+            this.startActivity(intent);
         }
     }
 }

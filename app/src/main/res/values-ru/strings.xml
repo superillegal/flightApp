@@ -15,4 +15,14 @@
     <string name="runway_length">Длина впп:</string>
     <string name="scheduled_service">Плановое обслуживание:</string>
     <string name="website">Вебсайт:</string>
+    <string name="user_login">Авторизация</string>
+    <string name="password">Пароль</string>
+    <string name="login">Вход</string>
+    <string name="not_a_user_sign_up">Здесь впервые? Зарегистрируйтесь здесь</string>
+    <string name="user_sign_up">Регистрация</string>
+    <string name="name">Имя</string>
+    <string name="sign_up">Зарегистрироваться</string>
+    <string name="already_registered_login_here">Уже есть аккаунт? Авторизуйтесь здесь</string>
+    <string name="tab1">Отправления</string>
+    <string name="tab2">Прибытия</string>
 </resources>
