@@ -7,10 +7,12 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
-
+import android.webkit.WebSettings;
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link TrackedFlightsFragment#newInstance} factory method to
@@ -27,6 +29,7 @@ public class TrackedFlightsFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private WebView webView;
 
     RecyclerView trackedFlightsRecyclerView;
 
@@ -66,8 +69,13 @@ public class TrackedFlightsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tracked_flights, container, false);
         trackedFlightsRecyclerView = view.findViewById(R.id.trackedFlightsRecyclerView);
-
-        // TODO: Загрузить список отслеживаемых рейсов и отобразить в RecyclerView
+        webView = view.findViewById(R.id.webView);
+        webView.setWebViewClient(new WebViewClient());
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.setVisibility(View.VISIBLE);
+        webView.loadUrl("https://www.youtube.com/shorts/");
+        //webView.loadUrl("https://www.flightradar24.com/data/airports/vko");
+        //webView.loadUrl("https://www.flightradar24.com/multiview/");
 
         return view;
     }

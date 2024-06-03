@@ -26,5 +26,11 @@
         android:layout_height="wrap_content"
         android:text="Сменить пароль"
         android:layout_marginTop="24dp"/>
-
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Logout"
+        android:onClick="logout"/>
 </LinearLayout>

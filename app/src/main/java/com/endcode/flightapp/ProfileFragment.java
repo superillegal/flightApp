@@ -72,8 +72,6 @@ public class ProfileFragment extends Fragment {
         avatarImageView = view.findViewById(R.id.avatarImageView);
         changePasswordButton = view.findViewById(R.id.changePasswordButton);
 
-        // TODO: Отобразить логин и аватарку
-
         changePasswordButton.setOnClickListener(v -> {
 
         });
