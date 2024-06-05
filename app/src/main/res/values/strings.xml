@@ -3,7 +3,6 @@
     <string name="wikipedia" translatable="false">Wikipedia</string>
     <string name="flightradar24" translatable="false">Flightradar24</string>
     <string name="radarbox" translatable="false">Radarbox</string>
-    <string name="flightaware" translatable="false">Flightaware</string>
     <string name="username">Name</string>
     <string name="email">Email</string>
     <string name="search_airports">Search airports...</string>
@@ -32,4 +31,8 @@
     <string name="already_registered_login_here">Already Registered? Login Here</string>
     <string name="tab1">Departures</string>
     <string name="tab2">Arrivals</string>
+    <string name="details">Details</string>
+    <string name="Page_home">Home</string>
+    <string name="Page_news">News</string>
+    <string name="Page_profile">Profile</string>
 </resources>

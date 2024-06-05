@@ -68,14 +68,12 @@ public class TrackedFlightsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tracked_flights, container, false);
-        trackedFlightsRecyclerView = view.findViewById(R.id.trackedFlightsRecyclerView);
+        //trackedFlightsRecyclerView = view.findViewById(R.id.trackedFlightsRecyclerView);
         webView = view.findViewById(R.id.webView);
         webView.setWebViewClient(new WebViewClient());
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setVisibility(View.VISIBLE);
-        webView.loadUrl("https://www.youtube.com/shorts/");
-        //webView.loadUrl("https://www.flightradar24.com/data/airports/vko");
-        //webView.loadUrl("https://www.flightradar24.com/multiview/");
+        webView.loadUrl("https://iz.ru/tag/aviakompanii");
 
         return view;
     }

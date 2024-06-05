@@ -167,13 +167,8 @@
                     android:id="@+id/radarboxButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/radarbox" />
+                    android:text="@string/details" />
 
-                <Button
-                    android:id="@+id/flightawareButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/flightaware" />
 
             </LinearLayout>
 

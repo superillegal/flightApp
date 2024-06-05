@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
     <item
         android:id="@+id/nav_home"
         android:icon="@drawable/icon_home"
-        android:title="Главная" />
+        android:title="@string/Page_home" />
     <item
         android:id="@+id/nav_tracked"
-        android:icon="@drawable/icon_heart"
-        android:title="Избранное" />
+        android:icon="@drawable/ic_news"
+        android:title="@string/Page_news" />
     <item
         android:id="@+id/nav_user"
         android:icon="@drawable/icon_user"
-        android:title="Профиль" />
+        android:title="@string/Page_profile" />
 </menu>

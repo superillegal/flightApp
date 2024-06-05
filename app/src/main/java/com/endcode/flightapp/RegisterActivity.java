@@ -85,7 +85,6 @@ public class RegisterActivity extends AppCompatActivity {
                             Toast.makeText(RegisterActivity.this, "Registration completed", Toast.LENGTH_SHORT).show();
                             HashMap<String, String> userInfo = new HashMap<>();
                             userInfo.put("email", email);
-                            userInfo.put("password", password);
                             userInfo.put("username", username);
                             FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(userInfo);

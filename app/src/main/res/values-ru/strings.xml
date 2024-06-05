@@ -25,4 +25,8 @@
     <string name="already_registered_login_here">Уже есть аккаунт? Авторизуйтесь здесь</string>
     <string name="tab1">Отправления</string>
     <string name="tab2">Прибытия</string>
+    <string name="details">Подробности о рейсах</string>
+    <string name="Page_home">Главная</string>
+    <string name="Page_news">Новости</string>
+    <string name="Page_profile">Профиль</string>
 </resources>
