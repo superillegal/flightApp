@@ -2,12 +2,14 @@ package com.endcode.flightapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,6 +20,7 @@ import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -108,26 +111,47 @@ public class ProfileFragment extends Fragment {
     }
 
     private void loadUserData() {
-        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        FirebaseDatabase.getInstance().getReference().child("Users").child(userId)
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.exists()) {
-                            String username = snapshot.child("username").getValue(String.class);
-                            String email = snapshot.child("email").getValue(String.class);
+        if (currentUser != null) {
+            String userId = currentUser.getUid();
 
-                            usernameTextView.setText(username);
-                            emailTextView.setText(email);
+            FirebaseDatabase.getInstance().getReference().child("Users").child(userId)
+                    .addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if (snapshot.exists()) {
 
+                                String username = snapshot.child("username").getValue(String.class);
+                                String email = snapshot.child("email").getValue(String.class);
+
+                                if (username != null) {
+                                    usernameTextView.setText(username);
+                                } else {
+                                    usernameTextView.setText("No username available");
+                                }
+
+                                if (email != null) {
+                                    emailTextView.setText(email);
+                                } else {
+                                    emailTextView.setText("No email available");
+                                }
+                            } else {
+                                Toast.makeText(getContext(), "User data not found", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                            Toast.makeText(getContext(), "Failed to load user data", Toast.LENGTH_SHORT).show();
+                            Log.e("ProfileFragment", "Error loading user data", error.toException());
+                        }
+                    });
+        } else {
+            Toast.makeText(getContext(), "User is not authenticated", Toast.LENGTH_SHORT).show();
+            Log.e("ProfileFragment", "User is not authenticated");
+            startActivity(new Intent(getActivity(), LoginActivity.class));
+        }
     }
+
 }
